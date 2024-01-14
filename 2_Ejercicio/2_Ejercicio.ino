@@ -1,14 +1,15 @@
 #include <ESP8266WiFi.h>
 
 // Configuración de la comunicación.
-const char* SSID = "MIWIFI_hYfa";
-const char* PASSWORD = "GbQAxxYE";
+const char* SSID = "MY_SSID";
+const char* PASSWORD = "MY_PASSWORD";
 
 void setup() {
   Serial.begin(9600);
 
   // Se establece la conexión.
   WiFi.mode(WIFI_STA);
+  WiFi.hostname("NodeMCU-ESP8266");
   WiFi.setAutoReconnect(true);
   WiFi.begin(SSID, PASSWORD);
 
@@ -17,6 +18,9 @@ void setup() {
     delay(200);
     Serial.println("Connecting to WiFi..");
   }
+
+  WiFi.setAutoReconnect(true);
+  WiFi.persistent(true);
 
   // Mostramos información de la comunicación.
   Serial.print("SSID: ");
